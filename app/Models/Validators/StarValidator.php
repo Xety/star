@@ -19,7 +19,8 @@ class StarValidator
         $rules = [
             'first_name' => 'required|min:2|max:15',
             'last_name' => 'required|min:2|max:15',
-            'image' => 'required|image|mimes:jpg,png,jpeg|max:2048'
+            'image' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+            'description' => 'max:6000'
         ];
 
         return FacadeValidator::make($data, $rules);
@@ -37,7 +38,9 @@ class StarValidator
         $rules = [
             'first_name' => 'required|min:2|max:15',
             'last_name' => 'required|min:2|max:15',
-            'image' => 'required|image|mimes:jpg,png,jpeg|max:2048'
+             //No longer required if the user don't want to update it.
+            'image' => 'image|mimes:jpg,png,jpeg|max:2048',
+            'description' => 'max:6000'
         ];
 
         return FacadeValidator::make($data, $rules);
