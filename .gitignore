@@ -23,3 +23,5 @@ Vagrantfile
 composer.lock
 package-lock.json
 public/images/stars/**.jpg
+public/images/stars/**.png
+public/images/stars/**.jpeg
