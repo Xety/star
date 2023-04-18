@@ -31,9 +31,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Star Routes
-    Route::get('/star', [StarController::class, 'edit'])->name('star.edit');
-    Route::patch('/star', [StarController::class, 'update'])->name('star.update');
-    Route::delete('/star', [StarController::class, 'destroy'])->name('star.destroy');
+    Route::get('/star/create', [StarController::class, 'create'])->name('star.create');
+    Route::post('/star/store', [StarController::class, 'store'])->name('star.store');
+
+    Route::get('/star/edit/{id}', [StarController::class, 'edit'])->name('star.edit');
+    Route::patch('/star/update/{id}', [StarController::class, 'update'])->name('star.update');
+
+    Route::delete('/star/destroy/{id}', [StarController::class, 'destroy'])->name('star.destroy');
 });
 
 require __DIR__ . '/auth.php';
