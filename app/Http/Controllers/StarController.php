@@ -7,6 +7,7 @@ use App\Models\Star;
 use App\Models\Validators\StarValidator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class StarController extends Controller
 {
@@ -34,11 +35,9 @@ class StarController extends Controller
         // Validate the data
         StarValidator::store($data)->validate();
 
-        // Rename the file and move it to the final path.
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('images/stars'), $imageName);
-
-        $data['image_name'] = $imageName;
+        // Store the image.
+        $path = $request->file('image')->store('images/stars');
+        $data['image_path'] = $path;
 
         // Store the Star.
         StarRepository::store($data);
@@ -93,16 +92,14 @@ class StarController extends Controller
         // Check if the image is present. If not that mean the user don't want to update it.
         if (!is_null($request->file('image'))) {
             // Remove the old file.
-            $oldPath = public_path('images/stars/' . $star->image);
+            $oldPath = storage_path('app/public/' . $star->image);
             if (File::exists($oldPath)) {
                 File::delete($oldPath);
             }
 
-            // Rename the file and move it to the final path.
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images/stars'), $imageName);
-
-            $data['image_name'] = $imageName;
+            // Store the new file.
+            $path = $request->file('image')->store('images/stars');
+            $data['image_path'] = $path;
         }
 
         // Update the Star.

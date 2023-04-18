@@ -19,7 +19,8 @@ class StarFactory extends Factory
         return [
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
-            'image' => fake()->image(public_path('images/stars'), 360, 360, null, true, true, null, true, 'jpg'),
+            'image' => 'images/stars/' . fake()
+                ->image(storage_path('app/public/images/stars'), 360, 360, null, false, true, null, true, 'jpg'),
             'description' => fake()->paragraphs(4, true)
         ];
     }

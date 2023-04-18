@@ -18,7 +18,7 @@ class StarRepository
         return Star::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'image' => $data['image_name'],
+            'image' => $data['image_path'],
             'description' => $data['description']
         ]);
     }
@@ -35,7 +35,7 @@ class StarRepository
     {
         $star->first_name = $data['first_name'];
         $star->last_name = $data['last_name'];
-        $star->image = isset($data['image_name']) ? $data['image_name'] : $star->image;
+        $star->image = isset($data['image_path']) ? $data['image_path'] : $star->image;
         $star->description = $data['description'];
         $star->save();
 
