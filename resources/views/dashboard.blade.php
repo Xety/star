@@ -50,7 +50,7 @@
                                         <tr class="border-b">
                                     @endif
 
-                                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
+                                        <th class="px-6 py-4">
                                             {{ $star->first_name }}
                                         </th>
                                         <td class="px-6 py-4">
