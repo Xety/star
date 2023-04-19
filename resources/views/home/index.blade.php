@@ -16,7 +16,7 @@
                     </li>
                 @empty
                     <li class="text-center text-gray-400">
-                        There's no Stars yet.
+                        {{ __('There\'s no Stars yet.') }}
                         @auth
                             <x-primary-button-link href="{{ route('star.create') }}">
                                 {{ __('Create a Star') }}

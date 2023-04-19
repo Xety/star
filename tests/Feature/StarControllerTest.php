@@ -13,6 +13,18 @@ class StarControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_show_page_is_displayed(): void
+    {
+        $star = Star::factory()->create();
+
+        $response = $this
+            ->get('/star/show/' . $star->id);
+
+        $response->assertOk();
+        $response->assertSee($star->first_name);
+        $response->assertSee($star->last_name);
+    }
+
     public function test_create_page_is_displayed(): void
     {
         $user = User::factory()->create();
