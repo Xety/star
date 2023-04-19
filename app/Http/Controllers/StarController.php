@@ -56,7 +56,9 @@ class StarController extends Controller
      */
     public function show($id)
     {
-        //
+        $star = Star::findOrFail($id);
+
+        return view('star.show', ['star' => $star]);
     }
 
     /**

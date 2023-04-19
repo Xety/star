@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StarController;
 use Illuminate\Support\Facades\Route;
@@ -17,12 +18,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Home page
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+// Star Routes
+Route::get('/star/show/{id}', [StarController::class, 'show'])->name('star.show');
 
 // Authenticated Routes
 Route::middleware('auth')->group(function () {

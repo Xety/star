@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Star;
 
-class DashboardController extends Controller
+class HomeController extends Controller
 {
     /**
-     * Display the dashboard homepage with all the Stars.
+     * Display the homepage with all the Stars.
      *
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
@@ -17,6 +17,6 @@ class DashboardController extends Controller
         $stars = Star::orderByDesc('created_at')
                         ->paginate(6);
 
-        return view('dashboard.index', ['stars' => $stars]);
+        return view('home.index', ['stars' => $stars]);
     }
 }
